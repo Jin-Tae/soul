@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<!--thymeleaf , springsecurity-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="-1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+<!--상단 네비게이터 시작 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">솔브레인</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a th:href="@{/soulbrain/}" class="nav-link active" href="/">메인페이지
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/soulbrain/homepage}">솔브레인 홈페이지</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/soulbrain/notion}">노션 페이지(로그인 필수)</a>
+                </li>
+            </ul>
+<!--            <form>-->
+<!--                <li class="navbar-nav me-auto">-->
+<!--                    <a class="nav-link"  >로그인</a>-->
+<!--                    <a class="nav-link" >로그아웃</a>-->
+<!--                    <a class="nav-link" >회원가입</a>-->
+<!--                </li>-->
+<!--            </form>-->
+        </div>
+    </div>
+</nav>
+    <div style="text-align: center">
+        <h1>노션 페이지</h1>
+        <a href="https://www.notion.so/57bc5cacbb874226abc1261fa4aaa4e5?v=fa97f801de4f44b697a11e9f72251564&pvs=4">접속하기</a>
+    </div>
+</body>
+
+
+
+<footer>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <span class="mb-3 mb-md-0 text-muted"> (주)솔브레인ㅣ대표자: 노환철 ㅣ사업자등록번호 :123-45-789</span>
+            </div>
+        </footer>
+    </div>
+</footer>
+</html>
+

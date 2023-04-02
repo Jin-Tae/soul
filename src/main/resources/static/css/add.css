@@ -1,0 +1,138 @@
+/* 22-08-30 이벤트 게시판 작업 */
+
+/* 이벤트 게시판 공통 */
+.event-cont .avatar {display: flex;align-items: center;justify-content: center;margin: 0;border-radius: 50%;color: #fff;overflow: hidden;}
+.event-cont .avatar i {font-size: 11px;margin-left: -1px;}
+.event-cont .avatar i[class^="ri"] {font-size: 12px;margin-left: -1px;}
+.event-cont .nodata {padding-top: 175px;/*padding-bottom: 175px;*/}
+
+/* 이벤트 게시판 리스트 */
+.event-cont .bd_srch_box.event-bd {display: flex;align-items: center;}
+.event-cont .bd_srch_box.event-bd .common_btn {flex: 0 0 auto;}
+.event-cont .bd_srch_box.event-bd .sorting-select {margin-left: 55px;margin-right: 0;}
+.event-cont .board_btn .btn_box a.write_btn {min-width: unset;}
+
+.event-cont .board_list {padding-top: 0;}
+.event-cont .board_list li {display: flex;align-items: center;}
+.event-cont .board_list li span.writerID {display: inline-flex;align-items: center;color: #171B27;font-weight: 500;min-width: 100px;margin-right: 40px;}
+.event-cont .board_list li span.writerID .avatar {width: 20px;height: 20px;margin-right: 8px;}
+.event-cont .board_list li span.tit {flex: 1;}
+.event-cont .board_list li .summary-info {display: flex;align-items: center;}
+.event-cont .board_list li .summary-info > span {min-width:unset;display: inline-flex;align-items: center;margin-right: 26px;font-size: 15px;font-weight: 400;line-height:1.46;letter-spacing: -0.05em;color: #828B99;}
+.event-cont .board_list li .summary-info > span:last-child {margin-right: 0;}
+.event-cont .board_list li .summary-info > span span {padding: 0;font-size: 15px;}
+.event-cont .board_list li .summary-info span i {margin-right: 8px;font-size: 20px;vertical-align: middle;}
+.event-cont .board_list li .summary-info span.heart i {color: #FF5857;}
+.event-cont .board_list li .summary-info span.view i {color: #ABB0BB;}
+.event-cont .board_list li .summary-info span.date {position: unset;}
+
+/* 이벤트 인트로 리스트 페이지 */
+.event-cont .board_card_list {display: grid;grid-template-columns: repeat(3, 313px);grid-gap: 50px 20px;padding-top:50px;border-top: 1px solid #EDEFF2;}
+.event-cont .board_card_list .card-item {width: 100%;}
+.event-cont .board_card_list .ct-image {position: relative;overflow: hidden;}
+.event-cont .board_card_list .ct-image img {width: 100%;}
+.event-cont .board_card_list .ct-desc {margin-top: 10px;font-weight: 400;}
+.event-cont .board_card_list .ct-name {line-height: 1.46;color: #171B27;font-size: 19px;}
+.event-cont .board_card_list .ct-image:hover + .ct-desc .ct-name a, 
+.event-cont .board_card_list .ct-name a:hover {font-weight: 600;}
+
+/* 이벤트 게시판 상세 */
+.event-cont .board_view p {word-break: break-all;}
+.event-cont .board_view .board_con + .board_con_link {margin-top: -20px;}
+.event-cont .board_view .board_con_link {margin-bottom: 60px;text-align: center;}
+.event-cont .board_view .board_con_link .link {display: inline-flex;padding: 8px 12px 10px 18px;background: #225FF5;border-radius: 50em;color: #fff;font-size: 15px;font-weight: 500;line-height: 150%;letter-spacing: -0.05em;}
+.event-cont .board_view .board_con_link .link:hover {color: #fff !important;}
+.event-cont .board_view .board_con_link .link i {margin-left: 4px;font-size: 21px;vertical-align: middle;}
+.event-cont .board_view .board_con_bottom {display: flex;align-items: center;}
+.event-cont .board_view .board_con_bottom .util-controls {display: flex;align-items: center;margin-left: auto;}
+.event-cont .board_view .board_con_bottom .util-controls button {margin-left: 10px;}
+.event-cont .board_view .board_con_bottom .util-controls .btn-ico {position: relative;display: flex;align-items: center;flex-direction: column;padding: 5px;font-size: 22px;color:#5C6575;}
+.event-cont .board_view .board_con_bottom .util-controls .btn-ico .txt {padding: 2px 6px;font-size: 12px;font-weight: 400;line-height: 150%;letter-spacing: -0.05em;background: #FFFFFF;border: 1px solid #EDEFF2;box-shadow: 3px 2px 7px rgba(98, 98, 98, 0.2);border-radius: 3px;color: #171B27;position:absolute;bottom: -31px;min-width: 35px;display: none;}
+.event-cont .board_view .board_con_bottom .util-controls .btn-ico:hover .txt {display: block;}
+.event-cont .board_view .board_con_bottom .util-controls .btn-ico-text {display: flex;align-items: center;box-sizing: border-box;padding: 5px 15px 6px 10px;margin-left: 16px;background: #FFFFFF;border: 1px solid #E4E7ED;border-radius: 50em;font-size: 15px;font-weight: 400;line-height: 150%;letter-spacing: -0.05em;color: #5C6575;}
+.event-cont .board_view .board_con_bottom .util-controls .btn-ico-text i {margin-right: 5px;font-size: 20px;color: #FF5857;}
+
+/* 이벤트 게시판 상세 댓글 */
+.comment-box-wrap {max-width: 980px;margin: 0 auto;}
+.comment-box-wrap .textarea-form .textarea-box {display: flex;}
+.comment-box-wrap .textarea-form .textarea-box .avatar {width: 45px;height: 45px;margin-right: 25px;}
+.comment-box-wrap .textarea-form textarea {flex: 1;width: 100%;min-height: 84px;padding:10px;background: #fff;border: 1px solid #D7DAE0;border-radius: 5px;font-size: 15px;font-weight: 400;line-height: 150%;letter-spacing: -0.05em;color: #5C6575;resize: none;}
+.comment-box-wrap .textarea-form .note-editor.note-frame {flex: 1;width: 100%;}
+.comment-box-wrap .textarea-form .btn-box {margin-left: auto;text-align: right;}
+.comment-box-wrap .textarea-form .btn-box button {padding: 13px 28px;margin-top: 15px;font-size: 17px;font-weight: 500;color: #fff;background: #061437;border: 1px solid #061437;border-radius: 5px;}
+
+.comment-write-wrap {padding-top: 50px;}
+.comment-list-wrap {margin-top: 28px;}
+.comment-list-wrap .paging {margin-top: 40px;margin-bottom: 0;}
+.comment-item {display: flex;padding: 22px 0;border-bottom: 1px solid #E4E7ED;}
+.comment-avatar .avatar {width: 24px;height: 24px;margin: 0;margin-top: 2px;border-radius: 50%;}
+.comment-content {flex: 1;padding-left: 8px;text-align: left;}
+.comment-info {display: flex;align-items: center;font-size: 12px;color: black;}
+.comment-info .info-text {display: flex;align-items: center;}
+.comment-info .name {max-width: 106px;line-height: 1.47;letter-spacing: -0.05em;font-size: 17px;font-weight: 500;color: #171B27;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.comment-info .date {display: inline-flex;align-items: center;line-height: 19px;letter-spacing: -0.05em;font-size: 13px;font-weight: 400;color: #828B99;}
+.comment-info .date:before {content: '';display: inline-block;width: 4px;height: 4px;margin: 0 12px;background: #D7DAE0;border-radius: 50%;}
+.comment-info .control-btns {margin-left: 23px;}
+.comment-info .control-btns button[class^=btn-] {padding: 7px;font-size: 16px;color: #828B99;}
+.comment-html {margin-top: 10px;}
+.comment-html .html-text {line-height: 150%;letter-spacing: -0.05em;font-size: 15px;font-weight: 400;color: #5C6575;}
+.comment-html .html-edit {width: 100%;}
+.comment-control {margin-top: 4px;text-align: right;}
+
+.comment-write-wrap .comment-avatar .avatar i {font-size: 18px;}
+.comment-write-wrap .comment-avatar .avatar i[class^="ri"] {font-size: 26px;}
+
+/* 이벤트 게시판 글쓰기 */
+.event-cont .regi_table .select_style {max-width: 396px;}
+.event-cont .regi_table .form-desc-tip {padding: 11px 20px;margin-bottom: 15px;background: #F6F8FF;border-radius: 5px;font-size: 15px;font-weight: 400;line-height: 1.46;letter-spacing: -0.05em;color: #232933;}
+.event-cont .regi_table .form-desc-tip li {padding-left: 12px;text-indent: -12px;}
+.event-cont .regi_table .form-desc-tip li:before {content: '';display: inline-block;vertical-align: middle;width: 4px;height: 4px;margin-right: 8px;background: #5C6575;border-radius: 50%;}
+.event-cont .regi_table .form_wrap input,
+.event-cont .regi_table textarea {font-size: 18px;}
+.event-cont .regi_table textarea {line-height: 1.46;}
+.event-cont .regi_table .note-editor.note-frame {border-radius: 5px;}
+.event-cont .regi_table .note-editor .note-editing-area {min-height: 250px;}
+.event-cont .regi_table .file_up .fileup_delete {display: inline-flex;align-items: center;}
+.event-cont .regi_table .file_up .fileup_delete i {font-size: 18px;vertical-align: middle;}
+.event-cont .footer_btn .btn_box {margin: 50px 0;}
+.event-cont .footer_btn .btn_box a.btn_blue:hover {color: #fff !important;}
+.event-cont .footer_btn .btn_box button.btn_blue:hover {color: #fff !important;}
+
+/* 반응형 - 태블릿 ~ 모바일 지원 */
+@media (max-width: 1000px) {
+    /* 이벤트 게시판 리스트 */
+    .event-cont .bd_srch_box.event-bd {flex-direction: column;}
+    .event-cont .bd_srch_box.event-bd .select {margin-right: 0;}
+    .event-cont .bd_srch_box.event-bd .common_btn {order: 4;}
+    .event-cont .bd_srch_box.event-bd .sorting-select {margin-left: 0;order: 3;}
+
+    /* 이벤트 인트로 페이지 */
+    .event-cont .board_card_list {display: block;padding-top:30px;}
+    .event-cont .board_card_list .card-item {margin-top: 40px;}
+    .event-cont .board_card_list .card-item:first-child {margin-top: 0;}
+    .event-cont .board_card_list .ct-desc {margin-top: 8px;}
+    .event-cont .board_card_list .ct-name {font-size: 15px;}
+
+    /* 이벤트 게시판 상세 */
+    .event-cont .board_list li {flex-direction: column;align-items: flex-start;padding: 15px 0;}
+    .event-cont .board_list li span {padding: 0;}
+    .event-cont .board_list li span.tit {margin-top: 7px;margin-bottom: 7px;}
+    .event-cont .board_list li .break {flex-basis: 100%;width: 0;}
+    .event-cont .board_list li .summary-info {margin-left: auto;}
+    .event-cont .board_list li .summary-info > span {margin-right: 17px;font-size: 13px;}
+    .event-cont .board_list li .summary-info > span span {font-size: 13px;}
+    .event-cont .board_list li .summary-info span i {margin-right: 5px;font-size: 17px;}
+    .event-cont .board_list li .summary-info span.date {margin-top: 0;}
+    .event-cont .board_view .board_con + .board_con_link {margin-top: 0;}
+    .event-cont .board_view .board_con_bottom {display: block;}
+    .event-cont .board_view .board_con_bottom .util-controls {justify-content: flex-end;margin-top: 10px;}
+
+    /* 이벤트 게시판 상세 댓글 */
+    .comment-info {flex-wrap: wrap;}
+    .comment-info .control-btns {margin-left: auto;}
+
+    /* 이벤트 게시판 글쓰기 */
+    .event-cont .regi_table .select_style {max-width: unset;}
+    .event-cont .regi_table .form_wrap input,
+    .event-cont .regi_table textarea {font-size: 15px;}
+}
