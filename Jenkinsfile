@@ -6,9 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('pull') {
+        stage('gradle') {
             steps {
-                git url: "$GIT_URL", branch: "main", poll: true, changelog: true
+                git 'gradle clean build -x test'
             }
         }
         stage('build') {
