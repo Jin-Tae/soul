@@ -3,10 +3,13 @@ pipeline {
 
      environment {
         GIT_URL = "https://github.com/Jin-Tae/soul.git"
+        repository = "monta010/sping"  //docker hub id와 repository 이름
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
+        dockerImage = '' 
     }
 
     stages {
-        stage('gradle') {
+        stage('Gralde_Clean_Build') {
             steps {
                 sh './gradlew clean build -x test'
             }
@@ -18,16 +21,20 @@ pipeline {
                     echo "Gradle failed"
                 }
             }
-        }
-    
-        stage('build') {
+        } 
+        stage('Docker_build') {
             steps {
-                sh 'docker build -t soulbrain ./'
+                dockerImage = docker.build repository + ":$BUILD_NUMBER" 
             }
         }
-        stage('Deploy') {
+        stage('Docker_Login') {
             steps {
-                sh 'docker run -d -p 8080:8080 --name soulbrain soulbrain'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin' // docker hub 로그인
+            }
+        }
+        stage('Docker_Hub_Image_Push'){
+            steps{
+                sh 'docker push $repository:$BUILD_NUMBER' //docker push
             }
         }
     }
