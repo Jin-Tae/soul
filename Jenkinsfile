@@ -24,7 +24,7 @@ pipeline {
         } 
         stage('Docker_build') {
             steps {
-                sh 'docker build -t monta010@sping .''
+                sh 'docker build -t monta010@sping .'
             }
         }
         stage('Docker_Login') {
