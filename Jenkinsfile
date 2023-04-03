@@ -11,7 +11,7 @@ pipeline {
                 sh './gradlew clean build -x test'
             }
         }
-    }
+    
         stage('build') {
             steps {
                 sh 'docker build -t soulbrain ./'
@@ -23,4 +23,4 @@ pipeline {
             }
         }
     }
-
+}
