@@ -10,6 +10,14 @@ pipeline {
             steps {
                 sh './gradlew clean build -x test'
             }
+            post{
+                success{
+                    echo "Gradle Success!!"
+                }
+                failure{
+                    echo "Gradle failed"
+                }
+            }
         }
     
         stage('build') {
