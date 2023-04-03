@@ -19,15 +19,15 @@ pipeline {
             echo "Gradle failure!!"
         }
     }
-        stage('build') {
-           steps {
-                sh 'docker build -t soulbrain ./'
-           }
+}
+    stage('build') {
+        steps {
+            sh 'docker build -t soulbrain ./'
         }
-        stage('Deploy') {
-           steps {
-                sh 'docker run -d -p 8080:8080 --name soulbrain soulbrain'
-           }
-       }
-   }
+    }
+    stage('Deploy') {
+        steps {
+            sh 'docker run -d -p 8080:8080 --name soulbrain soulbrain'
+        }
+    }
 }
