@@ -5,7 +5,7 @@ pipeline {
         GIT_URL = "https://github.com/Jin-Tae/soul.git"
         repository = "monta010/sping"  //docker hub id와 repository 이름
         DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
-        dockerImage = '' 
+        // dockerImage = '' 
     }
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
         } 
         stage('Docker_build') {
             steps {
-                dockerImage = docker.build repository + ":$BUILD_NUMBER" 
+                dockerImage = docker.build('monta010/sping:$BUILD_NUMBER')
             }
         }
         stage('Docker_Login') {
