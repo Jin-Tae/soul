@@ -24,7 +24,7 @@ pipeline {
         } 
         stage('Docker_build') {
             steps {
-                dockerImage = docker.build('monta010/sping:$BUILD_NUMBER')
+                sh 'docker build -t monta010@sping .''
             }
         }
         stage('Docker_Login') {
