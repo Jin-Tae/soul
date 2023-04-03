@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('gradle') {
             steps {
-                git 'gradle clean build -x test'
+                git './gradlew clean build -x test'
             }
         }
         stage('build') {
