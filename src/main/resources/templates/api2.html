@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>openAPI</title>
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"/>-->
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+$.ajax({
+    type: "GET",
+    url: "/api/v1",
+    dataType: 'json',
+    success: function(response) {
+        var json_item = response.response.body.items
+        for (var i =0; i<json_item.length; i++){
+            var item = json_item[i];
+            console.log("toilet_nm : " +  item.toilet_nm);
+            console.log("sgg_nm : " + item.sgg_nm);
+            console.log('--------------------');
+        }
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});
+
+
+$.ajax({
+    type: "GET",
+    url: "/api/v2",
+    dataType: 'json',
+    success: function(response) {
+        var json_item = response.data;
+        for (var i =0; i<json_item.length; i++){
+            var item = json_item[i];
+            console.log("주소 : " +  item.addr);
+            console.log("충전소 유형 : " + item.cpNm);
+            console.log("충전소 위치 : " + item.csNm);
+            console.log('--------------------');
+        }
+    },
+    error: function(error) {
+        console.log(error);
+    }
+
+
+});
+
+</script>
+<ul></ul>
+</body>
+</html>
+
+<!--var row = data['response']['body']['items']-->
+<!--for(var i=0; i<row.length; i++){-->
+<!--var gu_toilet_nm = row[i]['toilet_nm']-->
+<!--}-->

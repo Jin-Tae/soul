@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>충전소</title>
+    <style>
+        table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+.pagination {
+    display: inline-block;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+    </style>
+</head>
+<body>
+<input type="text" id="search-input" placeholder="검색어를 입력하세요">
+<table>
+    <thead>
+    <tr>
+        <th>No.</th>
+        <th>구</th>
+        <th>충전소 유형</th>
+        <th>충전소 위치</th>
+        <th>충전소 운영사</th>
+        <th>상세주소</th>
+    </tr>
+    </thead>
+    <tbody id="charging-station-data"></tbody>
+</table>
+<div class="pagination"></div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+        var currentPage = 1;
+        var itemsPerPage = 10;
+        var totalPages = 0;
+        var jsonItems = [];
+
+        function displayData() {
+            var startIndex = (currentPage - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var html = '';
+            for (var i = startIndex; i < endIndex && i < jsonItems.length; i++) {
+                var item = jsonItems[i];
+                html += '<tr><td>' + (i + 1) + '</td><td>' + item.sgg_nm + '</td><td>' + item.rpd_elctc_qy + '</td><td>' + item.dtl_pstn + '</td><td>' + item.oper_inst + '</td><td>' + item.addr + '</td></tr>';
+            }
+            $('#charging-station-data').html(html);
+        }
+
+        function displayPagination() {
+            var html = '';
+            for (var i = 1; i <= totalPages; i++) {
+                html += '<a href="#" class="' + (i == currentPage ? 'active' : '') + '">' + i + '</a>';
+            }
+            $('.pagination').html(html);
+        }
+
+        function loadData() {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/api/v3',
+                dataType: 'json',
+                success: function(response) {
+                    jsonItems = response.response.body.items;
+                    totalPages = Math.ceil(jsonItems.length / itemsPerPage);
+                    displayData();
+                    displayPagination();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function filterData(searchText) {
+            var filteredItems = jsonItems.filter(function(item) {
+                return item.sgg_nm.indexOf(searchText) !== -1 || item.rpd_elctc_qy.indexOf(searchText) !== -1 || item.dtl_pstn.indexOf(searchText) !== -1 || item.oper_inst.indexOf(searchText) !== -1 || item.addr.indexOf(searchText) !== -1;
+            });
+            currentPage = 1;
+            jsonItems = filteredItems;
+            totalPages = Math.ceil(jsonItems.length / itemsPerPage);
+            displayData();
+            displayPagination();
+        }
+
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            currentPage = parseInt($(this).text());
+            displayData();
+            displayPagination();
+        });
+
+        $('#search-input').on('input', function() {
+            var searchText = $(this).val().trim();
+            if (searchText === '') {
+                loadData();
+            } else {
+                filterData(searchText);
+            }
+        });
+
+        loadData();
+    </script>
+</body>
+</html>

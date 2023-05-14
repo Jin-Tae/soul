@@ -11,9 +11,16 @@
 //import com.google.gson.JsonElement;
 //import com.google.gson.JsonObject;
 //import com.google.gson.JsonParser;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.GetMapping;
+//
+//@Controller
+//
 //
 //public class ElectricCarChargingStationExample {
 //    public static void main(String[] args) throws IOException {
+//
+//
 //        String apiUrl = "https://www.yuseong.go.kr/ys_api/ys_api/getPbctltSttusList/?";
 //        String queryParams =  "&" + URLEncoder.encode("pageNo", StandardCharsets.UTF_8) + "=1";
 //        queryParams += "&" + URLEncoder.encode("numOfRows", StandardCharsets.UTF_8) + "=10";
